@@ -7,12 +7,20 @@ lazy val commonSettings = Seq(
 lazy val core = (project in file("core"))
 	.settings(
 		commonSettings,
-		name := "lamca-core"
+		name := "lamca-core",
+		libraryDependencies += "org.apache.commons" % "commons-text" % "1.2"
 	)
+
+lazy val parser = (project in file("parser"))
+	.settings(
+		commonSettings,
+		name := "lamca-parser"
+	)
+	.dependsOn(core)
 
 lazy val root = (project in file("."))
 	.settings(
 		commonSettings,
 		name := "lamca"
 	)
-	.aggregate(core)
+	.aggregate(core, parser)
