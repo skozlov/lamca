@@ -13,7 +13,7 @@ class AbstractionParser extends BlockParser[Abstraction] {
 		variablesParser(context) match {
 			case ParsingResult(variables, bodyContext) => bodyParser(bodyContext) match {
 				case ParsingResult(body, finalContext) => ParsingResult(
-					Abstraction(body, variables.head, variables.tail:_*),
+					Abstraction(variables, body),
 					finalContext
 				)
 			}

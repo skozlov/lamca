@@ -30,9 +30,10 @@ class TermParser extends BlockParser[Term] {
 							from = startContext.currentPosition,
 							to = endPosition
 						)
+					} else if (termsReversed.lengthCompare(1) == 0){
+						termsReversed.head
 					} else {
-						val terms = termsReversed.reverse
-						terms.tail.foldLeft(terms.head){(left, right) => Application(function = left, argument = right)}
+						Application(termsReversed.reverse)
 					}
 				}
 				ParsingResult(term, context)

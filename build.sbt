@@ -4,11 +4,17 @@ lazy val commonSettings = Seq(
 	scalaVersion := "2.12.4"
 )
 
+lazy val commons = (project in file("commons"))
+	.settings(
+		commonSettings,
+		name := "lamca-commons",
+		libraryDependencies += "org.apache.commons" % "commons-text" % "1.2"
+	)
+
 lazy val core = (project in file("core"))
 	.settings(
 		commonSettings,
-		name := "lamca-core",
-		libraryDependencies += "org.apache.commons" % "commons-text" % "1.2"
+		name := "lamca-core"
 	)
 
 lazy val parser = (project in file("parser"))
@@ -16,11 +22,11 @@ lazy val parser = (project in file("parser"))
 		commonSettings,
 		name := "lamca-parser"
 	)
-	.dependsOn(core)
+	.dependsOn(core, commons)
 
 lazy val root = (project in file("."))
 	.settings(
 		commonSettings,
 		name := "lamca"
 	)
-	.aggregate(core, parser)
+	.aggregate(commons, core, parser)

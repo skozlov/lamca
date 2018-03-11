@@ -1,6 +1,6 @@
 package com.github.skozlov.lamca.parser
 
-import com.github.skozlov.lamca.core.Message
+import com.github.skozlov.lamca.commons.localization.LocalizableMessage
 import com.github.skozlov.lamca.parser.ParsingException._
 import com.github.skozlov.lamca.parser.sourceCoordinate.{SourceCoordinate, SourcePiece}
 
@@ -12,9 +12,9 @@ object ParsingException{
 			s" to line ${message.piece.end.line} char ${message.piece.end.char}): ${message.message.resolved}"
 	}
 
-	def apply(message: Message, position: SourceCoordinate): ParsingException =
+	def apply(message: LocalizableMessage, position: SourceCoordinate): ParsingException =
 		ParsingException(SourceMessage(message, position))
 
-	def apply(message: Message, from: SourceCoordinate, to: SourceCoordinate): ParsingException =
+	def apply(message: LocalizableMessage, from: SourceCoordinate, to: SourceCoordinate): ParsingException =
 		ParsingException(SourceMessage(message, SourcePiece(from, to)))
 }
