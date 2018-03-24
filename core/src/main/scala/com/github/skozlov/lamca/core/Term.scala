@@ -21,14 +21,10 @@ object Application{
 case class Abstraction(variable: Variable, body: Term) extends Term
 
 object Abstraction{
-	def apply(variables: Seq[Variable], body: Term): Abstraction = {
-		require(variables.nonEmpty, "No variables specified")
-		val variablesReversed = variables.reverse
-		variablesReversed.tail.foldLeft(Abstraction(variablesReversed.head, body)){
+	def apply(variables: Seq[Variable], body: Term): Abstraction = variables.reverse match {
+		case lastVar :: firstVarsReversed => firstVarsReversed.foldLeft(Abstraction(lastVar, body)){
 			(body, variable) => Abstraction(variable, body)
 		}
+		case Nil => throw new IllegalArgumentException("No variables specified")
 	}
-
-	def apply(body: Term, variable1: Variable, otherVariables: Variable*): Abstraction =
-		Abstraction(variable1 +: otherVariables, body)
 }

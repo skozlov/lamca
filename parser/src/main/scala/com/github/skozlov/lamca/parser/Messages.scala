@@ -5,12 +5,12 @@ import com.github.skozlov.lamca.commons.localization.LocalizableMessage
 object Messages{
 	private val keyPrefix = "com.github.skozlov.lamca.parser"
 
-	lazy val MissingAbstractionVariables = LocalizableMessage(
+	val MissingAbstractionVariables = LocalizableMessage(
 		key = s"$keyPrefix.abstraction.variables.missing",
 		defaultTemplate = "Missing abstraction variables"
 	)
 
-	lazy val MissingAbstractionBody = LocalizableMessage(
+	val MissingAbstractionBody = LocalizableMessage(
 		key = s"$keyPrefix.abstraction.body.missing",
 		defaultTemplate = "Missing abstraction body"
 	)
@@ -27,7 +27,7 @@ object Messages{
 		parameters = Map("char" -> expected)
 	)
 
-	lazy val EmptyTerm = LocalizableMessage(
+	val EmptyTerm = LocalizableMessage(
 		key = s"$keyPrefix.term.empty",
 		defaultTemplate = "Empty term"
 	)

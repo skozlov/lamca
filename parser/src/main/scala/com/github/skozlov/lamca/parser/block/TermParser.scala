@@ -6,7 +6,7 @@ import Characters._
 
 import scala.annotation.tailrec
 import com.github.skozlov.lamca.parser.Messages._
-import com.github.skozlov.lamca.parser.sourceCoordinate.SourceCoordinate
+import com.github.skozlov.lamca.parser.sourcePosition.SourcePosition
 
 class TermParser extends BlockParser[Term] {
 	@throws[ParsingException]
@@ -19,11 +19,11 @@ class TermParser extends BlockParser[Term] {
 				val term = {
 					if (termsReversed.isEmpty){
 						val endPosition = context.currentPosition match {
-							case position @ SourceCoordinate(0, 0) => position
-							case SourceCoordinate(line, 0) =>
+							case position @ SourcePosition(0, 0) => position
+							case SourcePosition(line, 0) =>
 								val previousLine = startContext.sourceLines(line - startContext.currentPosition.line)
-								SourceCoordinate(line = line - 1, char = previousLine.length - 1)
-							case position @ SourceCoordinate(_, char) => position.copy(char = char - 1)
+								SourcePosition(line = line - 1, charIndex = previousLine.length - 1)
+							case position @ SourcePosition(_, char) => position.copy(charIndex = char - 1)
 						}
 						throw ParsingException(
 							EmptyTerm,

@@ -1,10 +1,10 @@
 package com.github.skozlov.lamca.parser
 
-import com.github.skozlov.lamca.parser.sourceCoordinate.SourceCoordinate
+import com.github.skozlov.lamca.parser.sourcePosition.SourcePosition
 
-case class ParsingContext(sourceLines: List[String], currentPosition: SourceCoordinate){
+case class ParsingContext(sourceLines: List[String], currentPosition: SourcePosition){
 	lazy val currentChar: Option[Char] = currentLine flatMap {
-		line => if (currentPosition.char < line.length) Some(line(currentPosition.char)) else None
+		line => if (currentPosition.charIndex < line.length) Some(line(currentPosition.charIndex)) else None
 	}
 
 	def currentLine: Option[String] = sourceLines.headOption

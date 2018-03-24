@@ -15,7 +15,7 @@ class VariableParser extends BlockParser[Variable] {
 			)
 			case Some(firstChar) =>
 				val line = context.currentLine.get
-				val charIndex = context.currentPosition.char
+				val charIndex = context.currentPosition.charIndex
 				val charsLeft = line.length - charIndex
 				val name = new StringBuilder(capacity = charsLeft)
 				require(
